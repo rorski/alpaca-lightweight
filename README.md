@@ -12,6 +12,6 @@ export APCA_API_SECRET_KEY=<your API secret>
 go run .
 ```
 
-Open [http://localhost:8090/chart?ticker=SPY&days=120](http://localhost:8090/bars?ticker=SPY&days=120) (or replace the ticker with whatever valid symbol you want) with your browser to see the result. It should look something like this:
+Open [http://localhost:8090/chart?ticker=SPY&days=120](http://localhost:8090/chart?ticker=SPY&days=120) (or replace the ticker with whatever valid symbol you want) with your browser to see the result. It should look something like this:
 
 ![SPY 100 day chart](static/spy100.png)
