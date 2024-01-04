@@ -46,9 +46,8 @@ func calcTechnicals(bars []marketdata.Bar) map[string]any {
 	return technicals
 }
 
-// Chart is a handler for the /chart path, which formats the query parameters and passes
-// it to the [Alpaca marketdata API] for processing. If successful, it returns a JSON
-// encoded list to be parsed by the UI client.
+// Chart is a handler for the /chart path, which formats the query parameters and passes it to the
+// [Alpaca marketdata API] for processing. If successful, it renders the layout.html template with the data.
 //
 // [Alpaca marketdata API]: https://github.com/alpacahq/alpaca-trade-api-go/tree/master/marketdata
 func (c *Config) Chart(w http.ResponseWriter, r *http.Request) {
