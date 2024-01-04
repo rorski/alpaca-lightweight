@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Lightweight Charts with Alpaca</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lightweight-charts@4.1.1/dist/lightweight-charts.standalone.production.js"></script>
+
+    <script type="module">
+        const data = [{{ range .Bars }}
+        {
+            time: "{{ .Timestamp.Format "2006-01-02" }}",
+            open: {{ .Open }},
+            high: {{ .High }},
+            low:  {{ .Low }},
+            close: {{ .Close }},
+        },
+        {{ end }}]
+
+        const chartOptions = {
+            width: 800,
+            height: 500,
+        };
+        const chart = LightweightCharts.createChart(document.getElementById("chart"), chartOptions);
+        const candlestickSeries = chart.addCandlestickSeries();
+
+        candlestickSeries.setData(data);
+        chart.timeScale().fitContent();
+    </script>
+</head>
+
+<body>
+    <main>
+        <div class="container mx-auto">
+            <h1 class="text-3xl text-center m-10">{{ .Ticker }}</h1>
+            <p class="text-center m-2">Max Price: {{ .Technicals.MaxPrice }}</h1>
+            <p class="text-center m-2">Min Price: {{ .Technicals.MinPrice }}</h1>
+            <p class="text-center m-2">Total Volume: {{ FormatBigNum .Technicals.TotalVol }}</h1>
+            <div class="flex justify-center items-center mt-8" id="chart"></div>
+        </div>
+    </main>
+
+</body>
+
+</html>
